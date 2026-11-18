@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Forecast: Meatballs</title>
+    <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
+  </head>
+  <body>
+    <!--
+      Forecast: Meatballs
+      by Alex Becker
+
+      In this world, the weather forecast is always food. Giant burgers and
+      donuts have fallen from the sky and landed across the land, and it's
+      still raining meatballs. The scene asks what would happen if the sky
+      gave us everything we wanted, and whether too much of a good thing is
+      still a good thing.
+
+      ASSET CITATIONS:
+      - "Beef Burger" by mehreen1919 [CC-BY 3.0] via Poly Pizza
+        https://poly.pizza/m/ml89vBFxes
+      - "Donut with Sprikles" by Jarlan Perez [CC-BY 3.0] via Poly Pizza
+        https://poly.pizza/m/a_4pX988Lb7
+      - Sky: "Pizzo Pernice (Pure Sky)" HDRI [CC0] via Poly Haven
+        https://polyhaven.com/a/pizzo_pernice_puresky
+        Recolored to a sunset palette and meatballs added to the sky.
+    -->
+
+    <a-scene>
+
+      <!-- Load the assets -->
+      <a-assets>
+        <a-asset-item id="burger" src="burger.glb"></a-asset-item>
+        <a-asset-item id="donut" src="donut.glb"></a-asset-item>
+        <img id="sky" src="sky.jpg" crossorigin="anonymous">
+      </a-assets>
+
+      <!-- Equirectangular sky image -->
+      <a-sky src="#sky" rotation="0 -90 0"></a-sky>
+
+      <!-- Ground: a giant pancake -->
+      <a-cylinder position="0 -0.1 0" radius="40" height="0.2" color="#e8b46a"></a-cylinder>
+      <!-- Syrup puddle on the pancake -->
+      <a-cylinder position="2 0.02 -5" radius="4" height="0.06" color="#7a3e0e"></a-cylinder>
+
+      <!-- 3D Model 1: giant burger -->
+      <a-entity gltf-model="#burger" position="-5 1.6 -9" scale="3 3 3" rotation="0 30 0"></a-entity>
+
+      <!-- 3D Model 2: giant donuts -->
+      <a-entity gltf-model="#donut" position="5 2.3 -7" scale="12 12 12" rotation="80 -20 0"></a-entity>
+      <a-entity gltf-model="#donut" position="2 3.3 -16" scale="18 18 18" rotation="80 20 0"></a-entity>
+
+      <!-- Raining meatballs (falling animation) -->
+      <a-sphere radius="0.4" color="#6b3b1f" position="-2 15 -6"
+        animation="property: position; from: -2 15 -6; to: -2 0.4 -6; dur: 3000; loop: true; easing: easeInQuad"></a-sphere>
+      <a-sphere radius="0.5" color="#5a3218" position="3 18 -10"
+        animation="property: position; from: 3 18 -10; to: 3 0.5 -10; dur: 3600; delay: 800; loop: true; easing: easeInQuad"></a-sphere>
+      <a-sphere radius="0.35" color="#6b3b1f" position="0 14 -4"
+        animation="property: position; from: 0 14 -4; to: 0 0.35 -4; dur: 2800; delay: 1500; loop: true; easing: easeInQuad"></a-sphere>
+      <a-sphere radius="0.45" color="#5a3218" position="-6 16 -3"
+        animation="property: position; from: -6 16 -3; to: -6 0.45 -3; dur: 3300; delay: 400; loop: true; easing: easeInQuad"></a-sphere>
+      <a-sphere radius="0.4" color="#6b3b1f" position="6 17 -4"
+        animation="property: position; from: 6 17 -4; to: 6 0.4 -4; dur: 3100; delay: 2000; loop: true; easing: easeInQuad"></a-sphere>
+
+      <!-- Title floating in the sky -->
+      <a-text value="Forecast: Meatballs" position="0 6 -12" align="center"
+              width="20" color="#ffffff"></a-text>
+
+      <!-- Lights -->
+      <a-entity light="type: ambient; intensity: 0.8"></a-entity>
+      <a-entity light="type: directional; intensity: 1" position="2 6 3"></a-entity>
+
+      <!-- Camera -->
+      <a-entity camera look-controls wasd-controls position="0 1.6 0"></a-entity>
+
+    </a-scene>
+  </body>
+</html>
